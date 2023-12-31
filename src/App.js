@@ -1,9 +1,12 @@
+import "./App.css";
+import Body from "./Components/Body";
+
 
 function App() {
   return (
-            <div className="m-2 p-2 text-3xl">
-            Namaste Duniya
-            </div>
+            <>
+            <Body/>
+            </>
   );
 }
 
