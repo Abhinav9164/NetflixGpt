@@ -4,10 +4,20 @@ import Header from './Header'
 import { checkValidateData } from '../utils/validate';
 import {createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 import {auth} from "../utils/firebase"
+import { useNavigate } from 'react-router-dom';
+import {updateProfile } from "firebase/auth";
+import { addUser } from '../utils/userSlice';
+import { useDispatch } from 'react-redux';
+
+
+
 
 
 
 const Login = () => {
+
+  const navigate = useNavigate();
+  const dispacth = useDispatch();
 
    const [SignInForm,setSignForm] = useState(false);
    const [errorMessage,setErrorMassage] = useState(null);
@@ -22,9 +32,8 @@ const Login = () => {
 
         if(message)
         return
-
+//signup
         if(!SignInForm){
-                                 //singnup logic
           createUserWithEmailAndPassword(
             auth,
              email.current.value,
@@ -32,8 +41,24 @@ const Login = () => {
           .then((userCredential) => {
             // Signed up 
             const user = userCredential.user;
+
+                  updateProfile(user, {
+                    displayName: "name.current.value",
+                    photoURL: "https://avatars.githubusercontent.com/u/64871995?v=4",
+                  }).then(() => {
+                    const {uid,email,displayName,photoURL} = auth.currentUser;
+                        dispacth(
+                          addUser({
+                          uid:uid,
+                          email:email,
+                          displayName:displayName,
+                          photoURL:photoURL
+                        }))
+                  navigate("/browse")
+            }).catch((error) => {
+              setErrorMassage(error.message)
+            });
                 
-            console.log(user)
 
           })
           .catch((error) => {
@@ -46,13 +71,12 @@ const Login = () => {
 
         }
         else{
-  
           
           signInWithEmailAndPassword(auth, email.current.value,password.current.value)
             .then((userCredential) => {
               // Signed in 
               const user = userCredential.user;
-              // ...
+              navigate("/browse")
             })
             .catch((error) => {
               const errorCode = error.code;
@@ -71,8 +95,10 @@ const Login = () => {
   return (
     <div>
       <Header/>
-      <div className='absolute'>
-        <img  src="https://assets.nflxext.com/ffe/siteui/vlv3/c31c3123-3df7-4359-8b8c-475bd2d9925d/15feb590-3d73-45e9-9e4a-2eb334c83921/IN-en-20231225-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+      <div className='absolute '>
+        <img  
+        className='h-auto'
+        src="https://assets.nflxext.com/ffe/siteui/vlv3/c31c3123-3df7-4359-8b8c-475bd2d9925d/15feb590-3d73-45e9-9e4a-2eb334c83921/IN-en-20231225-popsignuptwoweeks-perspective_alpha_website_large.jpg"
           alt="bodyimage"
           />
       </div>
@@ -88,7 +114,7 @@ const Login = () => {
         {!SignInForm && <input 
         className='p-2 m-4 w-full bg-gray-700'
         type='text'
-         placeholder='Email Address' />   } 
+         placeholder='Full Name' />   } 
 
         <input 
         ref={email}
@@ -99,7 +125,7 @@ const Login = () => {
         <input
         ref={password}
         className='p-2 m-4 w-full bg-gray-700' 
-        type='text' 
+        type='password' 
         placeholder='Password' />
         
         <p className='text-red-700 font-bold'>{errorMessage}</p>
