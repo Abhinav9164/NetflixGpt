@@ -2,6 +2,10 @@ import React, { useRef, useState } from 'react'
 import "../utils/validate"
 import Header from './Header'
 import { checkValidateData } from '../utils/validate';
+import {createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import {auth} from "../utils/firebase"
+
+
 
 const Login = () => {
 
@@ -11,17 +15,58 @@ const Login = () => {
    const email = useRef(null);
    const password = useRef(null);
    
-   const handleButtonClick = () => {
- 
-    const message = checkValidateData(email.current.value,password.current.value);
-     
-    setErrorMassage(message);
+      const handleButtonClick = () => {
     
-   }
+        const message = checkValidateData(email.current.value,password.current.value);
+        setErrorMassage(message);
 
-   const toggleSignIn = () => {
-      setSignForm(!SignInForm);
-   }
+        if(message)
+        return
+
+        if(!SignInForm){
+                                 //singnup logic
+          createUserWithEmailAndPassword(
+            auth,
+             email.current.value,
+              password.current.value)
+          .then((userCredential) => {
+            // Signed up 
+            const user = userCredential.user;
+                
+            console.log(user)
+
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setErrorMassage(errorCode +"-"+ errorMessage)
+            
+          });
+        
+
+        }
+        else{
+  
+          
+          signInWithEmailAndPassword(auth, email.current.value,password.current.value)
+            .then((userCredential) => {
+              // Signed in 
+              const user = userCredential.user;
+              // ...
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              setErrorMassage(errorCode  + "-" + errorMessage)
+            });
+
+        }
+        
+      }
+
+        const toggleSignIn = () => {
+            setSignForm(!SignInForm);
+        }
 
   return (
     <div>
@@ -62,7 +107,7 @@ const Login = () => {
         <button 
         onClick={handleButtonClick}
         className='text-sm p-4 m-4 h-12 bg-red-700 w-full rounded-lg'>
-        {!SignInForm ? "Sign In" : "Sign Out"}
+        {!SignInForm ? "Sign UP" : "Sign IN"}
         </button>
 
         <p
