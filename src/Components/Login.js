@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from './Header'
 
 const Login = () => {
+
+   const [SignInForm,setSignForm] = useState(false);
+
+
+   const toggleSignIn = () => {
+      setSignForm(!SignInForm);
+   }
+
   return (
     <div>
       <Header/>
@@ -10,19 +18,38 @@ const Login = () => {
           alt="bodyimage"
           />
       </div>
-       <form className='absolute w-3/12 h-1/2 p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-70'>
-        <h1 className='font-bold text-3xl p-2 m-2'>Sign In</h1>
+       <form className='absolute w-3/12 h-3/12 p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80'>
+        <h1 className='font-bold text-2xl '>
+            
+            {!SignInForm ? "Sign Up" : "Sign In"}
+            
+            </h1>
+
+        {!SignInForm && <input 
+        className='p-2 m-4 w-full bg-gray-700'
+        type='text'
+         placeholder='Email Address' />   } 
+
         <input 
         className='p-2 m-4 w-full bg-gray-700'
         type='text'
          placeholder='Email Address' />
+
         <input
         className='p-2 m-4 w-full bg-gray-700' 
         type='text' 
         placeholder='Password' />
-        <button className='p-4 m-4 bg-red-700 w-full rounded-lg'>
-            Sign In
+
+        <button className='text-sm p-4 m-4 h-12 bg-red-700 w-full rounded-lg'>
+        {!SignInForm ? "Sign In" : "Sign Out"}
         </button>
+
+        <p
+         className='font-bold py-4 cursor-pointer'
+         onClick={toggleSignIn}
+         >
+            {SignInForm ? "New to NetflixGPT SignUp Now" : "Already a Member!! Sign In"}
+        </p>
        </form>
     </div>
   )
