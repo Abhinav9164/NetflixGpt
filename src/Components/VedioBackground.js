@@ -4,13 +4,13 @@ import useMovieTrailer from '../hooks/useMovieTrailer'
 
 const VedioBackground = ( {movieId} ) => {
 
-    console.log(movieId)
+   // console.log(movieId)
     const trailerVedio = useSelector((store) => store?.movies?.trailerVedio)
 
     useMovieTrailer(movieId);
    
   return (
-    <div className='w-screen'>
+    <div className='w-screen overflow-x-hidden'>
         <iframe 
         
         className='w-screen aspect-video'
