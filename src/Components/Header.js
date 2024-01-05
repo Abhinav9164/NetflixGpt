@@ -5,7 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from '../utils/userSlice';
-import { LOGO } from '../utils/constants';
+import { LOGO, SUPPORTED_LANGUAGES } from '../utils/constants';
+import { toggleGptSearchView } from '../utils/gptSlice';
+import lang from '../utils/languageConstants';
+import { changeLanguage } from '../utils/configSlice';
 
 
 
@@ -14,6 +17,15 @@ const Header = () => {
   const dispacth = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const showGptSearch = useSelector((store) => store.GPT.showGptSearch)
+
+  const handleGptSearchClick = () => {
+    dispacth(toggleGptSearchView())
+  }
+
+  const handleLanguageChange = (e) => {
+    dispacth(changeLanguage(e.target.value));
+  }
 
   const handleSignOut = () => {
     signOut(auth)
@@ -47,17 +59,35 @@ const Header = () => {
 
    return () => unsubscribe();
 
-  },[])
+  },[]) 
 
   return (
-    <div className='absolute px-8 bg-gradient-to-r from-black-500 z-10 w-full flex justify-between '>
+    <div className='absolute px-8 bg-gradient-to-b from-black-500 z-10 w-full flex justify-between '>
       <img
         className='w-28'
         src={LOGO}
         alt="Logo"
       />
       {user && (
-        <div className='flex p-2 space-x-2 mx-8'>
+        <div className='flex p-2 space-x-2'>
+         
+         
+          {showGptSearch && (<select className='bg-gray-900 text-white'
+            onChange={handleLanguageChange}
+          >
+            {SUPPORTED_LANGUAGES.map((lang) =>(
+               <option value={lang.identifier} key={lang.identifier}>{lang.name}
+               </option>
+                ))}
+          </select>)}
+          
+
+
+          <button
+           onClick = {handleGptSearchClick}
+           className='bg-green-700 px-4 rounded-full text-white'>
+            {(showGptSearch) ? ( "HomePage"): ("GPT Search")}
+          </button>
           <img
             className='w-12 h-12 '
             alt="signOutLogo"

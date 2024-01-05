@@ -7,7 +7,7 @@ import {auth} from "../utils/firebase"
 import {updateProfile } from "firebase/auth";
 import { addUser } from '../utils/userSlice';
 import { useDispatch } from 'react-redux';
-import { USER_PHOTO } from '../utils/constants';
+import { BG_IMG, USER_PHOTO } from '../utils/constants';
 
 
 
@@ -95,7 +95,7 @@ const Login = () => {
       <div className='absolute '>
         <img  
         className='h-auto'
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/c31c3123-3df7-4359-8b8c-475bd2d9925d/15feb590-3d73-45e9-9e4a-2eb334c83921/IN-en-20231225-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+        src={BG_IMG}
           alt="bodyimage"
           />
       </div>
