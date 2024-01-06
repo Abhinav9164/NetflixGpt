@@ -7,7 +7,6 @@ import {onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from '../utils/userSlice';
 import { LOGO, SUPPORTED_LANGUAGES } from '../utils/constants';
 import { toggleGptSearchView } from '../utils/gptSlice';
-import lang from '../utils/languageConstants';
 import { changeLanguage } from '../utils/configSlice';
 
 
@@ -62,9 +61,9 @@ const Header = () => {
   },[]) 
 
   return (
-    <div className='absolute px-8 bg-gradient-to-b from-black-500 z-10 w-full flex justify-between '>
+    <div className='absolute px-8 bg-gradient-to-b from-black-500 z-10 w-full flex  flex-col md:flex-row justify-between'>
       <img
-        className='w-28'
+        className='w-28 md:mx-0 mx-auto'
         src={LOGO}
         alt="Logo"
       />
