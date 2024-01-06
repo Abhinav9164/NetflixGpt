@@ -8,7 +8,7 @@ const Mainconatiner = () => {
    const movies = useSelector((store) => store.movies?.nowPlayingMovies);
 
    if(!movies) return;
-   console.log(movies)
+  
 
     let rndm = Math.floor(Math.random() * 20);
 
