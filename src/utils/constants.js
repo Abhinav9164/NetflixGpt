@@ -2,8 +2,7 @@ export const LOGO =
   "https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png";
 
 export const USER_PHOTO =
-   "https://avatars.githubusercontent.com/u/64871995?v=4";
-
+"https://img.freepik.com/free-photo/3d-rendering-zoom-call-avatar_23-2149556778.jpg?w=900&t=st=1704570445~exp=1704571045~hmac=122dd5aa735ca401dccc2acf9d71e59f973f742b93eaf2b696ef42231e9e2f30"
 export const API_OPTIONS  = {
     method: 'GET',
     headers: {
@@ -22,4 +21,4 @@ export const SUPPORTED_LANGUAGES = [
   {identifier: "spanish", name: "Spanish"}
 ];
 
-export const OPENAI_KEY = "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"
+export const OPENAI_KEY = "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"
