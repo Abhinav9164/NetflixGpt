@@ -7,7 +7,7 @@
 
 **Welcome to NetflixGPT 👋**
 
-**NetflixGPT** is a web application that leverages the power of OpenAI's GPT-3 to enhance your Netflix experience. With this project, you can generate personalized movie and TV show recommendations based on your preferences, engage in natural language conversations to discover new content, and get detailed information about your favorite shows and movies.
+**NetflixGPT** is a web application that leverages the power of OpenAI's GPT-3.5 to enhance your Netflix experience. With this project, you can generate personalized movie and TV show recommendations based on your preferences, engage in natural language conversations to discover new content, and get detailed information about your favorite shows and movies.
 
 ## **Technologies Used**
 
@@ -22,6 +22,9 @@
 - **Firebase:** Firebase is used for user authentication, ensuring secure access to personalized recommendations and conversation history.
 
 - **OpenAI GPT-3.5:** The heart of NetflixGPT is powered by OpenAI's GPT-3.5, which enables natural language understanding and conversation generation.
+
+- **VERCEL:** For Deployment for the website.
+
 
 ## **Features**
 
