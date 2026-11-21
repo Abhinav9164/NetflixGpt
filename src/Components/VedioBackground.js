@@ -9,6 +9,8 @@ const VedioBackground = ( {movieId} ) => {
 
     useMovieTrailer(movieId);
    
+  if(!trailerVedio?.key) return <div className='shimmer w-screen aspect-video' />;
+
   return (
     <div className='w-screen overflow-x-hidden'>
         <iframe 

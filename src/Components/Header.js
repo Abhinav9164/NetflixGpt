@@ -61,40 +61,37 @@ const Header = () => {
   },[]) 
 
   return (
-    <div className='absolute px-8  z-10 w-full flex flex-col md:flex-row justify-between bg-gradient-t'>
+    <div className='absolute px-6 md:px-10 py-3 z-10 w-full flex flex-col md:flex-row items-center justify-between bg-gradient-to-b from-black/90 to-transparent'>
       <img
-        className='w-44 md:mx-0 mx-auto'
+        className='w-36 md:w-44 mx-auto md:mx-0'
         src={LOGO}
         alt="Logo"
       />
       {user && (
-        <div className='flex p-2 space-x-2 justify-between'>
-         
-         
-          {showGptSearch && (<select className='bg-gray-900 text-white'
-            onChange={handleLanguageChange}
-          >
-            {SUPPORTED_LANGUAGES.map((lang) =>(
-               <option value={lang.identifier} key={lang.identifier}>{lang.name}
-               </option>
-                ))}
-          </select>)}
-          
-
-
+        <div className='flex items-center gap-3 mt-2 md:mt-0'>
+          {showGptSearch && (
+            <select
+              className='bg-gray-900/90 text-white text-sm rounded-md px-3 py-2 ring-1 ring-white/20 outline-none cursor-pointer'
+              onChange={handleLanguageChange}
+            >
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option value={lang.identifier} key={lang.identifier}>{lang.name}</option>
+              ))}
+            </select>
+          )}
           <button
-           onClick = {handleGptSearchClick}
-           className='bg-purple-700 px-4 rounded-md text-white'>
-            {(showGptSearch) ? ( "HomePage"): ("GPT Search")}
+            onClick={handleGptSearchClick}
+            className='bg-purple-600 hover:bg-purple-700 transition-colors px-4 py-2 rounded-md text-white text-sm font-semibold shadow-lg'>
+            {showGptSearch ? "Home" : "GPT Search"}
           </button>
           <img
-            className='md:block hidden w-12 h-12 rounded-lg'
-            alt="signOutLogo"
+            className='md:block hidden w-10 h-10 rounded-full object-cover ring-2 ring-white/30'
+            alt="User avatar"
             src={user.photoURL}
           />
           <button
             onClick={handleSignOut}
-            className='font-sans h-10 text-white bg-red-700 p-1 px-4 my-1 -mx-2 rounded-md text-md'>
+            className='bg-red-600 hover:bg-red-700 transition-colors px-4 py-2 rounded-md text-white text-sm font-semibold shadow-lg'>
             Sign Out
           </button>
         </div>
