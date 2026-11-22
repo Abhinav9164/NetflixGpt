@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from '../utils/userSlice';
-import { LOGO, SUPPORTED_LANGUAGES } from '../utils/constants';
+import { SUPPORTED_LANGUAGES } from '../utils/constants';
 import { toggleGptSearchView } from '../utils/gptSlice';
 import { changeLanguage } from '../utils/configSlice';
 
@@ -62,11 +62,9 @@ const Header = () => {
 
   return (
     <div className='absolute px-6 md:px-10 py-3 z-10 w-full flex flex-col md:flex-row items-center justify-between bg-gradient-to-b from-black/90 to-transparent'>
-      <img
-        className='w-36 md:w-44 mx-auto md:mx-0'
-        src={LOGO}
-        alt="Logo"
-      />
+      <h1 className='text-3xl md:text-4xl font-extrabold tracking-tight mx-auto md:mx-0 bg-gradient-to-r from-violet-400 to-cyan-300 bg-clip-text text-transparent select-none'>
+        StreamGPT
+      </h1>
       {user && (
         <div className='flex items-center gap-3 mt-2 md:mt-0'>
           {showGptSearch && (

@@ -90,7 +90,7 @@ const Login = () => {
         >
           <h1 className='font-bold text-3xl'>{isSignIn ? 'Sign In' : 'Sign Up'}</h1>
           <p className='mt-1 mb-6 text-sm text-gray-400'>
-            {isSignIn ? 'Welcome back — pick up where you left off.' : 'Create an account to start exploring.'}
+            {isSignIn ? 'Welcome back — pick up where you left off.' : 'Create an account to discover movies with AI.'}
           </p>
 
           <div className='space-y-4'>
@@ -142,13 +142,16 @@ const Login = () => {
           </button>
 
           <p className='mt-6 text-gray-400'>
-            {isSignIn ? 'New to NetflixGPT? ' : 'Already a member? '}
+            {isSignIn ? 'New to StreamGPT? ' : 'Already a member? '}
             <span onClick={toggleSignIn} className='text-white font-semibold cursor-pointer hover:underline'>
               {isSignIn ? 'Sign up now' : 'Sign in'}
             </span>
           </p>
         </form>
       </div>
+      <p className='absolute bottom-3 w-full text-center text-xs text-gray-400 px-4'>
+        StreamGPT is an independent demo project and is not affiliated with Netflix or any streaming service.
+      </p>
     </div>
   )
 }
